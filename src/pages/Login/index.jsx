@@ -1,20 +1,19 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/authContext";
 
 export const Login = () => {
 
-    const [ loading, setLoading ] = useState(false);
+    const { onLogin } = useContext(AuthContext);
     const navigate = useNavigate();
+    const lastPath = localStorage.getItem('lastPath');
 
-    const handleLogin = async () => {
-        setLoading(true);
-        await setTimeout(() => {
-            if (true) {
-                return console.log('Ingresando...');
-            }
-        }, 10000);
-        setLoading(false);
-        navigate('/marvel');
+    const handleLogin = () => {
+        onLogin('Juan David Ospina');
+        // console.log(lastPath);
+        navigate(lastPath, {
+            replace: true
+        });
     }
 
     return(
@@ -29,7 +28,6 @@ export const Login = () => {
                 Ingresar
             </button>
 
-            { loading && <span>CARGANDO...</span> }
         </div>
     );
 }

@@ -2,7 +2,6 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { Navbar } from "../components/Navbar";
 
 import { 
-    Home, 
     Login, 
     About, 
     MarvelPage, 
@@ -10,6 +9,8 @@ import {
     HeroePage,
     SearchPage
 } from '../pages';
+import { PrivateRoutes } from "./PrivateRoutes";
+import { PublicRoutes } from "./PublicRoutes";
 
 
 export const AppRouter = () => {
@@ -41,8 +42,7 @@ export const AppRouter = () => {
                     <Route 
                         path='/search'
                         element = { <SearchPage /> }
-                    />
-                    
+                    />  
                 </Routes>
             </div>
         </>
@@ -53,13 +53,23 @@ export const AppRouterAuth = () => {
     return(
         <Routes> 
             <Route 
-                path='/login'
-                element = { <Login /> }
-            />
+                path="/login"
+                element = {
+                    <PublicRoutes>
+                        <Login />
+                    </PublicRoutes>
+                }
+            />    
+
             <Route 
                 path='/*'
-                element = { <AppRouter/> }
+                element = {
+                    <PrivateRoutes>
+                        <AppRouter/>
+                    </PrivateRoutes> 
+                }
             />
+            
         </Routes>
     );
 }

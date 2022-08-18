@@ -1,12 +1,10 @@
-import { AppRouterAuth } from "../../router/AppRouter"
-import { Layout } from "../Layout"
+import { AppRouterAuth } from '../../router/AppRouter';
+import { AuthProvider } from '../../context/authContext';
 
 export const HeroesApp = () => {
     return(
-        <>
-            <Layout>
-                <AppRouterAuth />
-            </Layout>
-        </>
+        <AuthProvider>
+            <AppRouterAuth />
+        </AuthProvider>
     )
 }

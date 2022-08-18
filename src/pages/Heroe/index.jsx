@@ -22,7 +22,7 @@ export const HeroePage = () => {
     return(
         <div className="row mt-5">
             <div className="col-4">
-                <img 
+                <img
                     src={ `/assets/${hero.id}.jpg` }
                     alt={ hero.superhero } 
                     className="img-thumbnail"
